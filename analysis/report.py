@@ -2,8 +2,11 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-data = pd.read_csv('output/input.csv')
+rec1_df = pd.read_csv(
+    'output/input_rec1.csv',
+    parse_dates = True,
+    names = ['covid_date','advice_date','ID'],
+    header=0
+    )
 
-fig, ax1 = plt.subplots(1,1,figsize = (16,6))
-sns.distplot(data['age'], ax = ax1)
-fig.savefig('output/descriptive.png')
+rec1_df.to_csv('output/output_table.csv', index=False)

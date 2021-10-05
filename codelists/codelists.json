@@ -1,16 +1,16 @@
 {
   "files": {
-    "opensafely-covid-identification-in-primary-care-suspected-covid-advice.csv": {
-      "id": "opensafely/covid-identification-in-primary-care-suspected-covid-advice/2020-07-16",
-      "url": "https://codelists.opensafely.org/codelist/opensafely/covid-identification-in-primary-care-suspected-covid-advice/2020-07-16/",
-      "downloaded_at": "2021-10-05 12:19:26.485927Z",
-      "sha": "b898d52ea318da16cbeea0ba2d2a1635b3673f90"
-    },
     "opensafely-covid-identification-in-primary-care-suspected-covid-suspected-codes.csv": {
       "id": "opensafely/covid-identification-in-primary-care-suspected-covid-suspected-codes/2020-07-16",
       "url": "https://codelists.opensafely.org/codelist/opensafely/covid-identification-in-primary-care-suspected-covid-suspected-codes/2020-07-16/",
       "downloaded_at": "2021-10-05 12:19:26.812571Z",
       "sha": "cabe593830301e976654435e2d662d9e68fa9e66"
+    },
+    "opensafely-covid-identification-in-primary-care-suspected-covid-advice.csv": {
+      "id": "opensafely/covid-identification-in-primary-care-suspected-covid-advice/2020-07-16",
+      "url": "https://codelists.opensafely.org/codelist/opensafely/covid-identification-in-primary-care-suspected-covid-advice/2020-07-16/",
+      "downloaded_at": "2021-10-05 12:19:26.485927Z",
+      "sha": "b898d52ea318da16cbeea0ba2d2a1635b3673f90"
     }
   }
 }

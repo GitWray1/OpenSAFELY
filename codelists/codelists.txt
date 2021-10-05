@@ -1,2 +1,2 @@
-opensafely/covid-identification-in-primary-care-suspected-covid-advice/2020-07-16
 opensafely/covid-identification-in-primary-care-suspected-covid-suspected-codes/2020-07-16
+opensafely/covid-identification-in-primary-care-suspected-covid-advice/2020-07-16
