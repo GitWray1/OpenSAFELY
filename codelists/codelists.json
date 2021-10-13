@@ -1,16 +1,22 @@
 {
   "files": {
-    "opensafely-covid-identification-in-primary-care-suspected-covid-suspected-codes.csv": {
-      "id": "opensafely/covid-identification-in-primary-care-suspected-covid-suspected-codes/2020-07-16",
-      "url": "https://codelists.opensafely.org/codelist/opensafely/covid-identification-in-primary-care-suspected-covid-suspected-codes/2020-07-16/",
-      "downloaded_at": "2021-10-05 12:19:26.812571Z",
-      "sha": "cabe593830301e976654435e2d662d9e68fa9e66"
+    "user-JWray-nice-acute-covid.csv": {
+      "id": "user/JWray/nice-acute-covid/62524bd4",
+      "url": "https://codelists.opensafely.org/codelist/user/JWray/nice-acute-covid/62524bd4/",
+      "downloaded_at": "2021-10-13 16:34:13.234510Z",
+      "sha": "a989bb269ca74a3ac11c69a51844b4d4db5fc41e"
     },
-    "opensafely-covid-identification-in-primary-care-suspected-covid-advice.csv": {
-      "id": "opensafely/covid-identification-in-primary-care-suspected-covid-advice/2020-07-16",
-      "url": "https://codelists.opensafely.org/codelist/opensafely/covid-identification-in-primary-care-suspected-covid-advice/2020-07-16/",
-      "downloaded_at": "2021-10-05 12:19:26.485927Z",
-      "sha": "b898d52ea318da16cbeea0ba2d2a1635b3673f90"
+    "user-JWray-nice-covid-advice-provided.csv": {
+      "id": "user/JWray/nice-covid-advice-provided/7b61bf09",
+      "url": "https://codelists.opensafely.org/codelist/user/JWray/nice-covid-advice-provided/7b61bf09/",
+      "downloaded_at": "2021-10-13 16:34:13.563882Z",
+      "sha": "339534576aca3e18835c37b83412121ef8c7e3d2"
+    },
+    "opensafely-ethnicity-snomed.csv": {
+      "id": "opensafely/ethnicity-snomed/2020-04-27",
+      "url": "https://codelists.opensafely.org/codelist/opensafely/ethnicity-snomed/2020-04-27/",
+      "downloaded_at": "2021-10-13 16:30:33.189619Z",
+      "sha": "68a3158e2cc851531dcf8d5a508dec2ddff97791"
     }
   }
 }

@@ -1,2 +1,3 @@
-opensafely/covid-identification-in-primary-care-suspected-covid-suspected-codes/2020-07-16
-opensafely/covid-identification-in-primary-care-suspected-covid-advice/2020-07-16
+user/JWray/nice-acute-covid/62524bd4
+user/JWray/nice-covid-advice-provided/7b61bf09
+opensafely/ethnicity-snomed/2020-04-27
