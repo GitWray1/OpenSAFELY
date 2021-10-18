@@ -12,14 +12,14 @@ from cohortextractor import (
 from codelists import *
 
 # Define the pandemic start date
-pandemic_start_date = "2020-02-01"
+index_date = "2020-02-01"
 
 # Define the study definition
 study = StudyDefinition(
 
     # Define the dummy data behaviour
     default_expectations={
-        "date": {"earliest": pandemic_start_date, "latest": "today"},
+        "date": {"earliest": index_date, "latest": "today"},
         "rate": "uniform",
         "incidence": 0.8,
     },
@@ -27,7 +27,7 @@ study = StudyDefinition(
     # Define the study population
     population=patients.with_these_clinical_events(
         susp_or_confirmed_covid_codes,
-        on_or_after=pandemic_start_date
+        on_or_after=index_date
     ),
 
     # Select the date column for people with suspected or confirmed COVID (Used to get advice given after diagnosis)
@@ -36,7 +36,7 @@ study = StudyDefinition(
         find_first_match_in_period=True,
         returning='date',
         date_format='YYYY-MM-DD',
-        return_expectations={"date": {"earliest": pandemic_start_date, "latest": "2021-10-04"},
+        return_expectations={"date": {"earliest": index_date, "latest": "2021-10-04"},
                              "rate": "uniform"},
     ),
 
@@ -47,10 +47,11 @@ study = StudyDefinition(
         find_first_match_in_period=True,
         returning='date',
         date_format='YYYY-MM-DD',
-        return_expectations={"date": {"earliest": pandemic_start_date, "latest": "2021-10-04"},
+        return_expectations={"date": {"earliest": index_date, "latest": "2021-10-04"},
                              "rate": "uniform"},
     ),
 
+    # Get the sex of patients
     sex=patients.sex(
         return_expectations={
             "rate": "universal",
@@ -58,8 +59,9 @@ study = StudyDefinition(
             }
     ),
 
+    # Get the region where each patient is registered
     region=patients.registered_practice_as_of(
-        "pandemic_start_date",
+        index_date,
         returning="nuts1_region_name",
         return_expectations={
             "rate": "universal",
@@ -78,6 +80,7 @@ study = StudyDefinition(
         },
     ),
 
+    # Get information on deprivation and group into IMD categories 1-5
     imd_category=patients.categorised_as(
         {
             "0": "DEFAULT",
@@ -88,7 +91,7 @@ study = StudyDefinition(
             "5": """index_of_multiple_deprivation >= 32844*4/5 AND index_of_multiple_deprivation < 32844""",
         },
         index_of_multiple_deprivation=patients.address_as_of(
-            "pandemic_start_date",
+            index_date,
             returning="index_of_multiple_deprivation",
             round_to_nearest=100,
         ),
@@ -106,6 +109,8 @@ study = StudyDefinition(
             },
         },
     ),
+
+    # Get information on age and group into categories
     age_group=patients.categorised_as(
         {
             "0-17": "age < 18",
@@ -133,17 +138,18 @@ study = StudyDefinition(
                 }
             },
         },
-        age=patients.age_as_of("pandemic_start_date"),
+        age=patients.age_as_of(index_date),
     ),
 
+    # Get information on ethnicity
     ethnicity=patients.with_these_clinical_events(
         ethnicity_codes,
         returning="category",
         find_last_match_in_period=True,
-        on_or_before="index_date",
+        on_or_before=index_date,
         return_expectations={
             "category": {"ratios": {"1": 0.8, "5": 0.1, "3": 0.1}},
             "incidence": 0.75,
         },
-    ),
+    )
 )

@@ -3,11 +3,11 @@ import pandas as pd
 
 # Read in the results dataframe produced from the study definition
 df = pd.read_csv(
-    'output/input_rec1.csv',
+    'output/input.csv',
     parse_dates=True,
-    names=['covid_date', 'advice_date', 'ID'],
+    names=['covid_date', 'advice_date', 'sex', 'region', 'IMD_category', 'age_group', 'ethnicity', 'ID'],
     header=0,
-    na_values=['', 0]
+    na_values=['', 'NA', 0]
     )
 
 # Create a list to keep all the information about the recs - will use to build the final dataframe

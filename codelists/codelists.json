@@ -12,11 +12,11 @@
       "downloaded_at": "2021-10-13 16:34:13.563882Z",
       "sha": "339534576aca3e18835c37b83412121ef8c7e3d2"
     },
-    "opensafely-ethnicity-snomed.csv": {
-      "id": "opensafely/ethnicity-snomed/2020-04-27",
-      "url": "https://codelists.opensafely.org/codelist/opensafely/ethnicity-snomed/2020-04-27/",
-      "downloaded_at": "2021-10-13 16:30:33.189619Z",
-      "sha": "68a3158e2cc851531dcf8d5a508dec2ddff97791"
+    "opensafely-ethnicity.csv": {
+      "id": "opensafely/ethnicity/2020-04-27",
+      "url": "https://codelists.opensafely.org/codelist/opensafely/ethnicity/2020-04-27/",
+      "downloaded_at": "2021-10-18 08:58:25.062515Z",
+      "sha": "3d2f3998b71863a80b24d60f6f4282e14191ae13"
     }
   }
 }

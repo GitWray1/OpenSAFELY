@@ -6,10 +6,10 @@ expectations:
 actions:
 
   generate_study_population:
-    run: cohortextractor:latest generate_cohort --study-definition study_definition_rec1
+    run: cohortextractor:latest generate_cohort --study-definition study_definition
     outputs:
       highly_sensitive:
-        cohort: output/input_rec1.csv
+        cohort: output/input.csv
 
   describe:
     run: python:latest python analysis/report.py
