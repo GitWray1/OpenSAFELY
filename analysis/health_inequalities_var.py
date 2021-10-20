@@ -1,57 +1,12 @@
-# Import all of the packages we will require
-from cohortextractor import (
-    StudyDefinition,
-    codelist,
-    codelist_from_csv,
-    combine_codelists,
-    filter_codes_by_category,
-    patients,
-)
-
-# Import our predefined codelists
+from cohortextractor import patients
 from codelists import *
 
-# Define the pandemic start date
-index_date = "2020-02-01"
+start_date = "2019-02-01"
 
-# Define the study definition
-study = StudyDefinition(
+# Health inequality variables
+health_inequalities = dict(
 
-    # Define the dummy data behaviour
-    default_expectations={
-        "date": {"earliest": index_date, "latest": "today"},
-        "rate": "uniform",
-        "incidence": 0.8,
-    },
-
-    # Define the study population
-    population=patients.with_these_clinical_events(
-        susp_or_confirmed_covid_codes,
-        on_or_after=index_date
-    ),
-
-    # Select the date column for people with suspected or confirmed COVID (Used to get advice given after diagnosis)
-    susp_or_confirmed_covid_date=patients.with_these_clinical_events(
-        susp_or_confirmed_covid_codes,
-        find_first_match_in_period=True,
-        returning='date',
-        date_format='YYYY-MM-DD',
-        return_expectations={"date": {"earliest": index_date, "latest": "2021-10-04"},
-                             "rate": "uniform"},
-    ),
-
-    # Define the variables we are interested in
-    advice_provided=patients.with_these_clinical_events(
-        covid_advice_provided_codes, 
-        on_or_after="susp_or_confirmed_covid_date",
-        find_first_match_in_period=True,
-        returning='date',
-        date_format='YYYY-MM-DD',
-        return_expectations={"date": {"earliest": index_date, "latest": "2021-10-04"},
-                             "rate": "uniform"},
-    ),
-
-    # Get the sex of patients
+    # Get patient sex
     sex=patients.sex(
         return_expectations={
             "rate": "universal",
@@ -59,9 +14,9 @@ study = StudyDefinition(
             }
     ),
 
-    # Get the region where each patient is registered
+    # Get NHS region
     region=patients.registered_practice_as_of(
-        index_date,
+        start_date,
         returning="nuts1_region_name",
         return_expectations={
             "rate": "universal",
@@ -91,7 +46,7 @@ study = StudyDefinition(
             "5": """index_of_multiple_deprivation >= 32844*4/5 AND index_of_multiple_deprivation < 32844""",
         },
         index_of_multiple_deprivation=patients.address_as_of(
-            index_date,
+            start_date,
             returning="index_of_multiple_deprivation",
             round_to_nearest=100,
         ),
@@ -138,7 +93,7 @@ study = StudyDefinition(
                 }
             },
         },
-        age=patients.age_as_of(index_date),
+        age=patients.age_as_of(start_date),
     ),
 
     # Get information on ethnicity
@@ -146,7 +101,7 @@ study = StudyDefinition(
         ethnicity_codes,
         returning="category",
         find_last_match_in_period=True,
-        on_or_before=index_date,
+        on_or_before=start_date,
         return_expectations={
             "category": {"ratios": {"1": 0.8, "5": 0.1, "3": 0.1}},
             "incidence": 0.75,

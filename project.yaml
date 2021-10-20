@@ -1,19 +1,34 @@
 version: '3.0'
 
 expectations:
-  population_size: 1000
+  population_size: 10000
 
 actions:
 
-  generate_study_population:
-    run: cohortextractor:latest generate_cohort --study-definition study_definition
+  generate_acute_cohort:
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_any_acute_covid_pri_care
     outputs:
       highly_sensitive:
-        cohort: output/input.csv
+        cohort: output/input_any_acute_covid_pri_care.csv
+        
+  generate_og_pc_cohort:
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_ongoing_post_covid
+    outputs:
+      highly_sensitive:
+        cohort: output/input_ongoing_post_covid.csv
+        
+  generate_cohort_all:
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_all
+    outputs:
+      highly_sensitive:
+        cohort: output/input_all.csv
 
-  describe:
-    run: python:latest python analysis/report.py
-    needs: [generate_study_population]
+  debug_cohort:
+    run: r:latest analysis/debug_script.R
+    needs: [generate_acute_cohort, generate_og_pc_cohort, generate_cohort_all]
     outputs:
       moderately_sensitive:
-        cohort: output/results_table.csv
+        debug_oc: output/debug_oc_counts.csv
+        debug_ac: output/debug_ac_counts.csv
+        debug_all_counts: output/debug_all_counts.csv
+        debug_all_crosstab: output/debug_all_diag_refer_crosstab.csv
